@@ -1,6 +1,9 @@
 import './style.css';
 
-const API = 'http://localhost:4000';
+const API =
+  ['localhost', '127.0.0.1'].includes(window.location.hostname)
+    ? 'http://localhost:4000'
+    : '';
 
 const app = document.querySelector('#app');
 
