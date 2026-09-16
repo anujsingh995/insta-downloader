@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "Backend API for downloading public Instagram media",
   "main": "src/server.js",
-  "scripts": {
+"scripts": {
   "dev": "nodemon src/server.js",
   "frontend": "npm --prefix frontend run dev",
-  "start:all": "concurrently \"npm run dev\" \"npm run frontend\""
+  "start:all": "concurrently \"npm run dev\" \"npm run frontend\"",
+  "start": "node src/server.js"
 },
   "dependencies": {
     "axios": "^1.7.2",
