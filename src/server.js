@@ -15,6 +15,7 @@ const errorHandler  = require('./middleware/errorHandler');
 const requestLogger = require('./middleware/requestLogger');
 
 const app = express();
+app.set('trust proxy', 1);
 const frontendPath = path.join(__dirname, '..', 'frontend', 'dist');
 
 app.use(express.static(frontendPath));
