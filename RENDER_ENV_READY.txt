@@ -1,0 +1,15 @@
+INSTADOWN - RENDER ENVIRONMENT VARIABLES
+========================================
+
+Add these under Render -> Environment Variables.
+
+NODE_ENV=production
+APIFY_API_TOKEN=PASTE_YOUR_REAL_APIFY_TOKEN
+APIFY_PROFILE_ACTOR=fetch_cat~instagram-profile-posts-scraper
+APIFY_MAX_POSTS=50
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=USE_A_NEW_STRONG_PRODUCTION_PASSWORD
+STATS_DATA_DIR=/var/data
+
+Do NOT add the local .env file to GitHub.
+Do NOT put the Apify token in frontend files.

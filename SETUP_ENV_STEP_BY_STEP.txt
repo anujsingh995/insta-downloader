@@ -1,0 +1,43 @@
+INSTADOWN - VERY SIMPLE SETUP
+==============================
+
+Everything is already configured except the Apify secret token.
+
+1. Open this folder:
+   D:\insta-downloader
+
+2. Open the file:
+   .env
+
+3. Find:
+   APIFY_API_TOKEN=PASTE_YOUR_APIFY_TOKEN_HERE
+
+4. Replace ONLY the text after = with your real Apify token.
+
+   Example:
+   APIFY_API_TOKEN=apify_api_xxxxxxxxxxxxx
+
+5. Save the file.
+
+6. Start the backend:
+   npm start
+
+7. Start the frontend in another PowerShell:
+   npm --prefix frontend run dev
+
+8. Open:
+   http://localhost:5173
+
+ADMIN LOGIN
+===========
+Username:
+admin
+
+Password:
+See the separate ADMIN_PASSWORD.txt file included with this package.
+
+IMPORTANT
+=========
+- Never upload .env or ADMIN_PASSWORD.txt to GitHub.
+- The Git ignore file already ignores .env.
+- Keep your Apify token secret.
