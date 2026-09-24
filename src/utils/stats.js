@@ -21,11 +21,14 @@ let stats = loadStats();
 function loadStats() {
   try {
     fs.mkdirSync(DATA_DIR, { recursive: true });
+
     if (!fs.existsSync(DATA_FILE)) {
       writeStats(EMPTY_STATS);
       return structuredClone(EMPTY_STATS);
     }
+
     const parsed = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+
     return {
       ...structuredClone(EMPTY_STATS),
       ...parsed,
@@ -43,8 +46,14 @@ function loadStats() {
 
 function writeStats(nextStats) {
   fs.mkdirSync(DATA_DIR, { recursive: true });
+
   const temp = `${DATA_FILE}.tmp`;
-  fs.writeFileSync(temp, JSON.stringify(nextStats, null, 2));
+
+  fs.writeFileSync(
+    temp,
+    JSON.stringify(nextStats, null, 2)
+  );
+
   fs.renameSync(temp, DATA_FILE);
 }
 
@@ -61,15 +70,24 @@ function recordEvent(type, meta = {}) {
   stats.byEvent[type] = (stats.byEvent[type] || 0) + 1;
 
   if (meta.country) {
-    stats.byCountry[meta.country] = (stats.byCountry[meta.country] || 0) + 1;
+    stats.byCountry[meta.country] =
+      (stats.byCountry[meta.country] || 0) + 1;
   }
 
   if (meta.device) {
-    stats.byDevice[meta.device] = (stats.byDevice[meta.device] || 0) + 1;
+    stats.byDevice[meta.device] =
+      (stats.byDevice[meta.device] || 0) + 1;
   }
 
   const day = todayKey();
-  stats.daily[day] ||= { visits: 0, downloads: 0, fetches: 0, profiles: 0 };
+
+  stats.daily[day] ||= {
+    visits: 0,
+    downloads: 0,
+    fetches: 0,
+    profiles: 0
+  };
+
   if (type === 'visit') stats.daily[day].visits += 1;
   if (type === 'download') stats.daily[day].downloads += 1;
   if (type === 'fetch') stats.daily[day].fetches += 1;
@@ -82,9 +100,12 @@ function recordEvent(type, meta = {}) {
     device: meta.device || 'Unknown',
     path: meta.path || ''
   });
+
   stats.recent = stats.recent.slice(0, 100);
 
-  try { writeStats(stats); } catch (error) {
+  try {
+    writeStats(stats);
+  } catch (error) {
     console.warn('[stats] write failed:', error.message);
   }
 
