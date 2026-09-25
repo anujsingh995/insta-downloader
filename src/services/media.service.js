@@ -60,7 +60,7 @@ async function extractWithYtDlp(postUrl) {
     noCallHome: true,
     noCheckCertificates: true,
     skipDownload: true,
-    noPlaylist: false,
+    format: 'best',
   }, {
     timeout: config.FETCH_TIMEOUT_MS,
   });
@@ -83,7 +83,11 @@ async function extractWithYtDlp(postUrl) {
     }
 
     // Some extractors expose a thumbnail separately.
-    if (entry?.thumbnail && !seen.has(entry.thumbnail)) {
+    if (
+      !media &&
+      entry?.thumbnail &&
+      !seen.has(entry.thumbnail)
+    ) {
       seen.add(entry.thumbnail);
       items.push({
         url: entry.thumbnail,
